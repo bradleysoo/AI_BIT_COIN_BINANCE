@@ -6,7 +6,7 @@
 
 
 ## 🧩 프로젝트 구조
-'''
+```
 ai_bit_coint_binace/
 │
 ├── ai_analysis.py             # AI 분석 (Gemini)
@@ -16,7 +16,7 @@ ai_bit_coint_binace/
 ├── .gitignore                 # .env, __pycache__ 등 제외
 ├── requirements.txt           # 패키지 목록
 └── README.md                  # 프로젝트 설명
-'''
+```
 
 
 ## ⚙️ 주요 기능
