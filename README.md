@@ -54,6 +54,8 @@ ai_bit_coint_binace/
 
 
 ### 실행 예시 ##
+```
  [12:30:12] Current BTC Price: $108,350.22
-"### AI Decision: LONG ###"
-"### Reason: 상승 추세 강세 ###"
+### AI Decision: LONG ###
+### Reason: 상승 추세 강세 ###
+```
