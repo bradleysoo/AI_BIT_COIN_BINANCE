@@ -44,20 +44,18 @@ def execute_trading():
 
             # 포지션 확인
             current_side = None  ##현재 포지션 방향을 저장 (long, short, None)
-            currnet_amount = 0
-            # positions = exchange.fetch_positions([symbol])## 포지션 가져오기
-            # for position in positions:
-            #     if position["symbol"] == "BTC/USDT:USDT":
-            #         amt = float(position["info"]["positionAmt"])
-            #         if amt > 0:
-            #             current_side = "long"
-            #             currnet_amount = amt
-            #         elif amt < 0:
-            #             current_side = "short"
-            #             amount_amount = abs(amt)
-            position = exchange.fetch_positions(symbols=[symbol])
-            amt = float(position["info"]["positionAmt"])
-            print(amt)
+            current_amount = 0
+            amt = 0
+            positions = exchange.fetch_positions([symbol])  ## 포지션 가져오기
+            for position in positions:
+                if position["symbol"] == "BTC/USDT:USDT":
+                    amt = float(position["info"]["positionAmt"])
+                    if amt > 0:
+                        current_side = "long"
+                        current_amount = amt
+                    elif amt < 0:
+                        current_side = "short"
+
             if amt > 0:
                 current_side = "long"
                 current_amount = amt
@@ -121,7 +119,6 @@ def execute_trading():
                         order = exchange.create_market_buy_order(
                             symbol=symbol,
                             amount=amount,
-                            params={"positionSide": "LONG"},
                         )
 
                         # Take Profit 주문 (롱 포지션 청산을 위한 TAKE_PROFIT_MARKET 매도 주문)
@@ -133,7 +130,6 @@ def execute_trading():
                             price=None,
                             params={
                                 "stopPrice": take_profit_price,
-                                "positionSide": "LONG",
                             },
                         )
 
@@ -146,7 +142,6 @@ def execute_trading():
                             price=None,
                             params={
                                 "stopPrice": stop_loss_price,
-                                "positionSide": "LONG",
                             },
                         )
 
@@ -181,7 +176,6 @@ def execute_trading():
                         order = exchange.create_market_sell_order(
                             symbol=symbol,
                             amount=amount,
-                            params={"positionSide": "SHORT"},
                         )
 
                         # Take Profit 주문 (숏 포지션 청산을 위한 TAKE_PROFIT_MARKET 매수 주문)
@@ -192,7 +186,6 @@ def execute_trading():
                             amount=amount,
                             params={
                                 "stopPrice": take_profit_price,
-                                "positionSide": "SHORT",
                             },
                         )
 
@@ -204,7 +197,6 @@ def execute_trading():
                             amount=amount,
                             params={
                                 "stopPrice": stop_loss_price,
-                                "positionSide": "SHORT",
                             },
                         )
                         print("## Position SHORT ##")

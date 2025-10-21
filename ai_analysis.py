@@ -1,6 +1,6 @@
 import os
 
-os.environ["GRPC_VERBOSITY"] = "NONE"##GCP 에러 메세지 막기
+os.environ["GRPC_VERBOSITY"] = "NONE"  ##GCP 에러 메세지 막기
 os.environ["GRPC_TRACE"] = ""
 from dotenv import load_dotenv
 
@@ -58,5 +58,3 @@ def ai_analysis():
     print("### Reason: ", reason, "###")
     return result_data
 
-
-ai_analysis()
