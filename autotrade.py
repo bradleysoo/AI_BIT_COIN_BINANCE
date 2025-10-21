@@ -27,8 +27,10 @@ def execute_trading():
     # 레버리지 셋팅 난 무조건 저배율
     symbol = "BTC/USDT"
     leverage = 2
+    margin = "ISOLATED"
     exchange.set_leverage(leverage, symbol)
-    print(f"{symbol} 레버리지 {leverage}배 설정 완료")
+    exchange.set_margin_mode(margin, symbol)
+    print(f"{symbol} 레버리지 {leverage}배 설정")
 
     while True:
         try:
@@ -49,6 +51,7 @@ def execute_trading():
             positions = exchange.fetch_positions([symbol])  ## 포지션 가져오기
             for position in positions:
                 if position["symbol"] == "BTC/USDT:USDT":
+                    pnl = float(position["unrealizedPnl"])
                     amt = float(position["info"]["positionAmt"])
                     if amt > 0:
                         current_side = "long"
@@ -66,6 +69,7 @@ def execute_trading():
             # 현재 포지션 출력
             if current_side:
                 print(f"Current Position: {current_side.upper()} {current_amount} BTC")
+                print(f"Current PNL: {pnl} USDT")
 
             else:
                 # 포지션이 없을 경우, 남아있는 미체결 주문 취소
@@ -107,7 +111,7 @@ def execute_trading():
                     # 잔액이 0.001BTC 이상 일때 거래 가능
                     if usdt_available > tradeable_btc:
 
-                        amount = (usdt_available * 0.995) / current_btc_price
+                        amount = (usdt_available * leverage * 0.995) / current_btc_price
                         # 익절/손절 가격 계산
                         take_profit_price = round(current_btc_price * 1.03, 2)  # +3%
                         stop_loss_price = round(current_btc_price * 0.97, 2)  # -3%
@@ -161,7 +165,7 @@ def execute_trading():
                     # BTC 원화 가치 계산
                     if usdt_available > tradeable_btc:
 
-                        amount = (usdt_available * 0.995) / current_btc_price
+                        amount = (usdt_available * leverage * 0.995) / current_btc_price
 
                         # 손익절 계산
                         take_profit_price = round(current_btc_price * 0.97, 2)  # -3%
@@ -214,6 +218,7 @@ def execute_trading():
                     print("## Position HOLD ##")
                     print("       NOTING      ")
                     print("## Position HOLD ##")
+                    time.sleep(1800)
                 else:
                     print("ai 결정에 문제가 있습니다.")
 
