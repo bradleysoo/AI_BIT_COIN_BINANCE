@@ -32,8 +32,9 @@ def ai_analysis():
   As a Bitcoin short-term investment expert, please advise which strategy to adopt—buy, sell, or hold—based on the provided chart data. Each investment must yield a 3–5% profit.
   Perform analysis based on the provided chart data:
   - 15-minute chart: 96 15-minute charts
-
+  - 1-hour chart: 24 1-hour charts
   Respond in the following JSON format:
+  
   {{“decision” : ‘long’, ‘reason’ : “technical reasons”}}
   {{“decision” : ‘short’, ‘reason’ : “technical reasons”}}
   {{“decision” : ‘hold’, ‘reason’ : “technical reasons”}}
@@ -59,3 +60,4 @@ def ai_analysis():
     return result_data
 
 
+ai_analysis()

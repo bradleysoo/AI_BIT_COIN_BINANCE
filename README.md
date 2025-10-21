@@ -22,7 +22,7 @@ ai_bit_coint_binace/
 ## ⚙️ 주요 기능
 
 ### 1️⃣ get_char_from_binance.py
-- **CCXT 라이브러리**를 통해 Binance Futures에서 `BTC/USDT`의 15분봉 데이터를 96개 조회
+- **CCXT 라이브러리**를 통해 Binance Futures에서 `BTC/USDT`의 15분봉 데이터를 96개 조회 , 1시간봉 24개 조회
 - `Pandas`로 가공하여 JSON 형태로 반환
 
 ### 2️⃣ ai_analysis.py
