@@ -29,12 +29,14 @@ def ai_analysis():
 
     # 프롬프트 구성
     prompt = f"""
-  As a Bitcoin short-term investment expert, please advise which strategy to adopt—buy, sell, or hold—based on the provided chart data. Each investment must yield a 3–5% profit.
+  As a Bitcoin short-term investment expert, please advise which strategy—buy, sell, or hold—to adopt based on the provided chart data.
+  In the short term, when the price abnormally deviates from the average chart to the upper or lower limit and then returns to the average, a 2.5% investment return must be achieved.
+  The first rule is to avoid losing money.
   Perform analysis based on the provided chart data:
   - 15-minute chart: 96 15-minute charts
   - 1-hour chart: 24 1-hour charts
   Respond in the following JSON format:
-  
+
   {{“decision” : ‘long’, ‘reason’ : “technical reasons”}}
   {{“decision” : ‘short’, ‘reason’ : “technical reasons”}}
   {{“decision” : ‘hold’, ‘reason’ : “technical reasons”}}
@@ -43,7 +45,7 @@ def ai_analysis():
 
   """
 
-    #  API 호출
+    # API 호출
     response = model.generate_content(prompt)
 
     #  결과 json 변형
@@ -58,6 +60,5 @@ def ai_analysis():
     print("### AI Decision: ", decision.upper(), "###")
     print("### Reason: ", reason, "###")
     return result_data
-
 
 ai_analysis()

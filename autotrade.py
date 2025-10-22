@@ -113,8 +113,8 @@ def execute_trading():
 
                         amount = (usdt_available * leverage * 0.995) / current_btc_price
                         # 익절/손절 가격 계산
-                        take_profit_price = round(current_btc_price * 1.03, 2)  # +3%
-                        stop_loss_price = round(current_btc_price * 0.97, 2)  # -3%
+                        take_profit_price = round(current_btc_price * (1+0.025/leverage), 3)  # +2.5%
+                        stop_loss_price = round(current_btc_price * (1-0.025/leverage), 3)  # -2.5%
 
                         # LONG 포지션 진입 실행
                         print("### LONG 포지션 진입 실행 ###")
@@ -151,8 +151,8 @@ def execute_trading():
 
                         print("## Position LONG ##")
                         print(f"현재가: {current_btc_price} USDT")
-                        print(f"익절가(TP): {take_profit_price} USDT (+3%)")
-                        print(f"손절가(SL): {stop_loss_price} USDT (-3%)")
+                        print(f"익절가(TP): {take_profit_price} USDT (+2.5%)")
+                        print(f"손절가(SL): {stop_loss_price} USDT (-2.5%)")
                         print("## Position LONG ##")
                     else:
                         print("잔액(USDT)가 0.001BTC 미만 입니다.")
@@ -168,8 +168,8 @@ def execute_trading():
                         amount = (usdt_available * leverage * 0.995) / current_btc_price
 
                         # 손익절 계산
-                        take_profit_price = round(current_btc_price * 0.97, 2)  # -3%
-                        stop_loss_price = round(current_btc_price * 1.03, 2)  # +3%
+                        take_profit_price = round(current_btc_price * (1-0.025/leverage), 3)  # -2.5%
+                        stop_loss_price = round(current_btc_price *  (1+0.025/leverage), 3)  # +2.5%
 
                         print(f"현재가: {current_btc_price} USDT")
                         print(f"익절가(TP): {take_profit_price} USDT")
@@ -205,8 +205,8 @@ def execute_trading():
                         )
                         print("## Position SHORT ##")
                         print(f"현재가: {current_btc_price} USDT")
-                        print(f"익절가(TP): {take_profit_price} USDT (-3%)")
-                        print(f"손절가(SL): {stop_loss_price} USDT (+3%)")
+                        print(f"익절가(TP): {take_profit_price} USDT (-2.5%)")
+                        print(f"손절가(SL): {stop_loss_price} USDT (+2.5%)")
                         print("## Position SHORT ##")
                     else:
                         print("잔액(USDT)가 0.001BTC 미만 입니다.")
