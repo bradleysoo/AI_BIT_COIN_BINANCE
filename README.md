@@ -12,7 +12,6 @@ ai_bit_coint_binace/
 ├── ai_analysis.py             # AI 분석 (Gemini)
 ├── autotrade.py               # 자동 거래 실행
 ├── get_char_from_binance.py   # Binance 차트 데이터 수집
-├── .env                       # 환경변수 (API 키)
 ├── .gitignore                 # .env, __pycache__ 등 제외
 ├── requirements.txt           # 패키지 목록
 └── README.md                  # 프로젝트 설명
@@ -42,10 +41,7 @@ ai_bit_coint_binace/
 - 주기적으로 시장 상황을 모니터링하며 자동 반복
 
 
-## 🔐 환경 변수 (.env)
 
-`.env` 파일은 **절대 깃허브에 업로드하지 마세요** ❗  
-다음과 같은 형식으로 작성합니다:
 
 ## 🧰 설치 및 실행 방법
 
